@@ -1,0 +1,8 @@
+.DS_Store/
+.idea/
+coverage/
+.history/
+dist
+node_modules/
+git rm -r --cached node_modules/
+*.zip
