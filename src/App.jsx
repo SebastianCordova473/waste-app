@@ -1,45 +1,96 @@
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import Wastes from './Wastes';
 import Strategies from './Strategies';
 import SalesAnalysisChart from './analysis/SalesAnalysisChart';
 import WastePrediction from './wastes/WastePrediction';
-import {useState, useEffect} from 'react';
-export default function App() {
-  const [data, setData] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+import {useState, useEffect, useRef} from 'react';
+
+const App = () => {
+  const [data, setData] = useState(null);
+  const [showChart, setShowChart] = useState(false);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
-    fetch('http://35.231.78.51/fapi-dev/data.php/api', {
-      mode: 'cors',
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setData({
-          wastes: data.waste,
-          sales: data.sales,
-          demands: data.demands,
-          offers: data.offers,
-          products: data.productos,
-          season: data.season,
-          categories: data.categorias,
-          subCategories: data.subCategorias,
-        });
-        setIsLoading(false);
-      })
-      .catch((err) => console.error(err));
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      const fetchData = async () => {
+        try {
+          const response = await fetch(
+            'http://35.231.78.51/fapi-dev/data.php/api'
+          );
+          const data = await response.json();
+          setData({
+            wastes: data.waste,
+            sales: data.sales,
+            demands: data.demands,
+            offers: data.offers,
+            products: data.productos,
+            season: data.season,
+            categories: data.categorias,
+            subCategories: data.subCategorias,
+          });
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+      fetchData();
+    }
+  }, []);
+
+  useEffect(() => {
+    // Delay rendering the chart to allow other components to load
+    const timeout = setTimeout(() => {
+      setShowChart(true);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return (
-    <div className="App">
-      {isLoading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <Wastes />
-          <WastePrediction data={data} />
-          <Strategies data={data} />
-          <SalesAnalysisChart data={data} />
-        </>
-      )}
-    </div>
+    <Router>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">
+          Waste Management
+        </a>
+        <div className="collapse navbar-collapse">
+          <ul className="navbar-nav mr-auto">
+            <li className="nav-item">
+              <Link className="nav-link" to="/wastes">
+                Wastes
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/wasteprediction">
+                Waste Prediction  
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/strategies">
+                Strategies
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/chart">
+                Sales Analysis Chart
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <Routes>
+        <Route path="/wastes" element={<Wastes data={data} />} />
+        <Route path="/strategies" element={<Strategies data={data} />} />
+        <Route
+          path="wasteprediction"
+          element={<WastePrediction data={data} />}
+        />  
+        <Route
+          path="/chart"
+          element={showChart && <SalesAnalysisChart data={data} />}
+        />
+      </Routes>
+    </Router>
   );
-}
+};
+export default App;

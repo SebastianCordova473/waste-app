@@ -19,11 +19,14 @@
     "vite": "^4.3.5"
   },
   "dependencies": {
+    "@tensorflow/tfjs": "^4.6.0",
+    "@tensorflow/tfjs-converter": "^4.6.0",
     "chart.js": "^4.3.0",
     "chartjs-adapter-date-fns": "^3.0.0",
     "ml-matrix": "^6.10.4",
     "ml-regression-multivariate-linear": "^2.0.4",
-    "react-router-dom": "^6.11.1",
+    "react-chartjs-2": "^5.2.0",
+    "react-router-dom": "^6.11.2",
     "uuid": "^9.0.0"
   }
 }
