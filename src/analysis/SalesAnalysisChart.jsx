@@ -66,48 +66,56 @@ const SalesAnalysisChart = ({data}) => {
             data: sales,
             borderColor: 'blue',
             fill: false,
+            hidden: false,
           },
           {
             label: 'Predicted Sales',
             data: Array.from(predictionsSales),
             borderColor: 'lightblue',
             fill: false,
+            hidden: false,
           },
           {
             label: 'Actual Waste',
             data: wastes,
             borderColor: 'red',
             fill: false,
+            hidden: false,
           },
           {
             label: 'Predicted Waste',
             data: Array.from(predictionsWastes),
             borderColor: 'pink',
             fill: false,
+            hidden: false,
           },
           {
             label: 'Actual Demands',
             data: demands,
             borderColor: 'green',
             fill: false,
+            hidden: true,
           },
           {
             label: 'Predicted Demands',
             data: Array.from(predictionsDemands),
             borderColor: 'lightgreen',
             fill: false,
+            hidden: true,
           },
           {
             label: 'Actual Offers',
             data: offers,
             borderColor: 'orange',
             fill: false,
+            hidden: true,
           },
           {
             label: 'Predicted Offers',
             data: Array.from(predictionsOffers),
             borderColor: 'lightorange',
             fill: false,
+            hidden: true,
           },
         ],
       };
@@ -163,12 +171,16 @@ const SalesAnalysisChart = ({data}) => {
     };
   }, []);
 
+  const chartStyles = {
+    width: '900px', // or any width you want
+    height: '700px', // or any height you want
+  };
   return (
     <div>
       {isLoading ? (
         <p>Loading...</p>
       ) : chartData ? (
-        <canvas ref={chartRef} /> // use a canvas element with a ref instead of the Line component
+        <canvas style={chartStyles} ref={chartRef} /> // use a canvas element with a ref instead of the Line component
       ) : null}
     </div>
   );

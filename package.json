@@ -23,6 +23,7 @@
     "@tensorflow/tfjs-converter": "^4.6.0",
     "chart.js": "^4.3.0",
     "chartjs-adapter-date-fns": "^3.0.0",
+    "date-fns": "^2.30.0",
     "ml-matrix": "^6.10.4",
     "ml-regression-multivariate-linear": "^2.0.4",
     "react-chartjs-2": "^5.2.0",
