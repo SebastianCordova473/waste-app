@@ -71,7 +71,7 @@ Please note that you need a stable internet connection to successfully fetch dat
 
 #Prediction of Wastes
 
-![Wastes Prediction][https://res.cloudinary.com/df9aeptyn/image/upload/v1683929148/Screenshot_2023-05-12_at_15.56.21_ew3qou.png]
+![Wastes Prediction](https://res.cloudinary.com/df9aeptyn/image/upload/v1683929148/Screenshot_2023-05-12_at_15.56.21_ew3qou.png)
 
 **Predicted Amount of Waste**: The model predicts that the amount of waste will be approximately $4606.4235079196915. This value represents the estimated quantity of waste expected based on the input data and the model's calculations.
 
@@ -80,7 +80,7 @@ Please note that you need a stable internet connection to successfully fetch dat
 **R-Squared (R²)**: The R-squared value, also known as the coefficient of determination, measures the proportion of the variance in the dependent variable (waste in this case) that can be explained by the independent variables used in the model. An R-squared value of 1.000000000000106 indicates that the model explains all of the variance in the waste data, suggesting a perfect fit between the predicted values and the actual values.
 
 #Strategies
-![Strategies][https://res.cloudinary.com/df9aeptyn/image/upload/v1683935418/Screenshot_2023-05-12_at_18.48.51_wcv2fg.png]
+![Strategies](https://res.cloudinary.com/df9aeptyn/image/upload/v1683935418/Screenshot_2023-05-12_at_18.48.51_wcv2fg.png)
 
 #Analysis
-![Analysis][https://res.cloudinary.com/df9aeptyn/image/upload/v1683935499/Screenshot_2023-05-12_at_18.51.08_mrdhs6.png]
+![Analysis](https://res.cloudinary.com/df9aeptyn/image/upload/v1683935499/Screenshot_2023-05-12_at_18.51.08_mrdhs6.png)
