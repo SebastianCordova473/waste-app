@@ -1,7 +1,8 @@
 import {useEffect, useRef, useState} from 'react';
 import Chart from 'chart.js/auto';
+import GetPercentageDifference from '../utils/GetPercentageDifference';
 
-export default function Wastes() {
+export default function WastesReduction() {
   const [data, setData] = useState([]);
   const [chartRendered, setChartRendered] = useState(false);
   const chartRef = useRef(null);
@@ -35,7 +36,7 @@ export default function Wastes() {
               } else {
                 const currentMonthValue = item.monto;
                 const previousMonthValue = array[index - 1].monto;
-                return getPercentageDifference(
+                return GetPercentageDifference(
                   currentMonthValue,
                   previousMonthValue
                 );
@@ -89,9 +90,4 @@ export default function Wastes() {
       </div>
     </div>
   );
-}
-
-function getPercentageDifference(currentValue, previousValue) {
-  const diff = (currentValue - previousValue) / previousValue;
-  return diff * 100;
 }

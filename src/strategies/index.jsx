@@ -1,15 +1,19 @@
-import RecommendStrategies from './strategies/RecommendStrategies';
-import DownloadedImage from './DownloadedImage.jsx';
-export default function Strategies({data}) {
-  let strategies;
-  let hasEffectiveStrategies = false;
-  if (Object.keys(data).length > 0) {
-    strategies = RecommendStrategies(data);
-    hasEffectiveStrategies = strategies.some((strategy) => strategy.effective);
+import RecommendStrategies from './RecommendStrategies';
+import DownloadedImage from '../DownloadedImage.jsx';
+
+const Strategies = ({data}) => {
+  if (data === null) {
+    return <p>Loading...</p>;
   }
+
+  const strategies = RecommendStrategies(data);
+  const hasEffectiveStrategies = strategies.some(
+    (strategy) => strategy.effective
+  );
+
   return (
     <div>
-      <h1>Estrategies</h1>
+      <h1>Strategies</h1>
       {hasEffectiveStrategies ? (
         <div className="row">
           {strategies.map((strategy) => {
@@ -18,27 +22,26 @@ export default function Strategies({data}) {
                 <div className="col-md-4" key={strategy.id}>
                   <div className="card mb-4">
                     <div className="card-body">
-                      <h5 className="card-title">Estrategy: {strategy.name}</h5>
+                      <h5 className="card-title">Strategy: {strategy.name}</h5>
                       <p className="card-text">
-                        Porcentaje de Mejora: {strategy.improvementPercentage}
+                        Improvement Percentage: {strategy.improvementPercentage}
                       </p>
                     </div>
                     <div className="card">
                       <div className="card-body">
                         <h5 className="card-title">
-                          {'Categoria: '}
+                          {'Category: '}
                           {strategy.categories.map((cat) => (
                             <span key={cat.id}>{cat.nombre} </span>
                           ))}
                         </h5>
                         <p className="card-text">
-                          Subcategorias:{' '}
+                          Subcategories:{' '}
                           {strategy.subCategories.map((subCat) => (
                             <span key={subCat.id}>{subCat.nombre} </span>
                           ))}
                         </p>
                       </div>
-
                       {strategy.products.map((product) => (
                         <DownloadedImage
                           key={product.id}
@@ -54,8 +57,10 @@ export default function Strategies({data}) {
           })}
         </div>
       ) : (
-        <p>No Strategies Available </p>
+        <p>No effective strategies available</p>
       )}
     </div>
   );
-}
+};
+
+export default Strategies;

@@ -1,7 +1,8 @@
+
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import Wastes from './Wastes';
-import Strategies from './Strategies';
-import SalesAnalysisChart from './analysis/SalesAnalysisChart';
+import WastesReduction from './wastes';
+import Strategies from './strategies';
+import SalesNeuronalNetworking from './analysis/SalesNeuronalNetworking';
 import WastePrediction from './wastes/WastePrediction';
 import {useState, useEffect, useRef} from 'react';
 
@@ -56,13 +57,13 @@ const App = () => {
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <Link className="nav-link" to="/wastes">
-                Wastes
+              <Link className="nav-link" to="/wastesreduction">
+                Wastes Reduction
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/wasteprediction">
-                Waste Prediction  
+                Waste Prediction
               </Link>
             </li>
             <li className="nav-item">
@@ -71,23 +72,27 @@ const App = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/chart">
-                Sales Analysis Chart
+              <Link className="nav-link" to="/sales-neuronal-networking">
+                Sales Neuronal Networking
               </Link>
             </li>
           </ul>
         </div>
       </nav>
       <Routes>
-        <Route path="/wastes" element={<Wastes data={data} />} />
+        <Route
+          path="/wastesreduction"
+          element={<WastesReduction data={data} />}
+        />
         <Route path="/strategies" element={<Strategies data={data} />} />
         <Route
           path="wasteprediction"
-          element={<WastePrediction data={data} />}
-        />  
+          element={data ? <WastePrediction data={data} /> : null}
+        />
+
         <Route
-          path="/chart"
-          element={showChart && <SalesAnalysisChart data={data} />}
+          path="/sales-neuronal-networking"
+          element={showChart && <SalesNeuronalNetworking data={data} />}
         />
       </Routes>
     </Router>
