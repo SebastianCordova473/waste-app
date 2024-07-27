@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://35.231.78.51',
+        target: 'https://franz.kvconsult.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

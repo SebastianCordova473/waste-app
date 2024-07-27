@@ -1,4 +1,3 @@
-
 import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import WastesReduction from './wastes';
 import Strategies from './strategies';
@@ -17,7 +16,7 @@ const App = () => {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            'http://35.231.78.51/fapi-dev/data.php/api'
+            'https://franz.kvconsult.com/fapi-dev/data.php/api'
           );
           const data = await response.json();
           setData({
