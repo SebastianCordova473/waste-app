@@ -4,7 +4,7 @@ import Strategies from './strategies';
 import SalesNeuronalNetworking from './analysis/SalesNeuronalNetworking';
 import WastePrediction from './wastes/WastePrediction';
 import {useState, useEffect, useRef} from 'react';
-
+import {BASE_URL} from '../src/utils/Constants';
 const App = () => {
   const [data, setData] = useState(null);
   const [showChart, setShowChart] = useState(false);
@@ -15,9 +15,7 @@ const App = () => {
       isFirstRender.current = false;
       const fetchData = async () => {
         try {
-          const response = await fetch(
-            'https://franz.kvconsult.com/fapi-dev/data.php/api'
-          );
+          const response = await fetch(BASE_URL + '/data.php/api');
           const data = await response.json();
           setData({
             wastes: data.waste,

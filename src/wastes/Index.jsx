@@ -1,14 +1,14 @@
 import {useEffect, useRef, useState} from 'react';
 import Chart from 'chart.js/auto';
 import GetPercentageDifference from '../utils/GetPercentageDifference';
-
+import {BASE_URL} from '../utils/Constants';
 export default function WastesReduction() {
   const [data, setData] = useState([]);
   const [chartRendered, setChartRendered] = useState(false);
   const chartRef = useRef(null);
 
   useEffect(() => {
-    fetch('http://35.231.78.51/fapi-dev/data.php/merma', {
+    fetch(BASE_URL + '/data.php/merma', {
       mode: 'cors',
     })
       .then((response) => response.json())
